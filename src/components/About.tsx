@@ -2,22 +2,28 @@
 import Image from 'next/image'
 import React from 'react'
 import Button from './Button';
+import { useLanguageStore } from '../store/languageStore';
+import { AboutStrings } from '../strings/About';
+import AnimatedText from './AnimatedText';
 
 function About() {
+    const { language, translationKey } = useLanguageStore()
+    const strings = AboutStrings[language]
     return (
         <div className=" animate-fade-in animation-delay-100 flex items-center justify-center px-4 sm:px-8 lg:px-16 py-32 md:py-44">
             <div className='max-w-6xl w-full flex flex-col md:flex-row items-center gap-12'>
-                {/* Texto */}
                 <div className='md:w-1/2 space-y-6'>
-                    <div className='text-accent text-lg font-mono'>Hello, I'm</div>
-                    <h1 className='text-light text-4xl sm:text-5xl font-bold'>Johan Higuera</h1>
-                    <h2 className='text-primary text-2xl sm:text-3xl font-semibold'>FullStack Developer</h2>
-                    <p className='text-muted text-base sm:text-lg leading-relaxed'>
-                        I'm a FullStack Developer with experience in React, Next.js, Node.js, Express, MongoDB, and PostgreSQL.
-                    </p>
-                    <Button variant="accent" onClick={() => document.getElementById('contact')?.scrollIntoView()}>
-                        Contact Me
-                    </Button>
+                    <AnimatedText>
+                        <div className='text-accent text-lg font-mono'>{strings.greeting}</div>
+                        <h1 className='text-light text-4xl sm:text-5xl font-bold'>{strings.title}</h1>
+                        <h2 className='text-primary text-2xl sm:text-3xl font-semibold'>{strings.subtitle}</h2>
+                        <p className='text-muted text-base sm:text-lg leading-relaxed'>
+                            {strings.description}
+                        </p>
+                        <Button variant="accent" scrollToId={"contact"} >
+                            {strings.cta}
+                        </Button>
+                    </AnimatedText>
                 </div>
 
                 {/* Imagen */}

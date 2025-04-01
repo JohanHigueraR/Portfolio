@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Button from './Button';
+import LanguageSwitcher from './LanguageSwitcher';
 
 function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -60,8 +61,8 @@ function NavBar() {
 
 
 
-
-            <Button variant="accent"  scrollToId="contact" >
+            <LanguageSwitcher></LanguageSwitcher>
+            <Button variant="accent" scrollToId="contact" >
               Hire Me
             </Button>
 
@@ -91,8 +92,18 @@ function NavBar() {
         <div className="px-4 pt-2 pb-6 space-y-3 bg-surface/95 backdrop-blur-lg border-t border-primary/10">
           <MobileNavLink href="/" text="Home" currentPath={pathname} />
           <MobileNavLink href="/projects" text="Projects" currentPath={pathname} />
-          <MobileNavLink href="/contact" text="Contact" currentPath={pathname} />
 
+          <button
+            className="
+    w-full px-3 py-3 text-left
+    flex items-center space-x-2
+    text-muted hover:text-light
+    transition-colors duration-300
+  "
+          >
+            <span>🌐</span>
+            <span>English/Español</span>
+          </button>
           <Link
             href="/contact"
             className="
